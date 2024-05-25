@@ -1,7 +1,7 @@
 {
-    "name": "@backend/commondir",
-    "version": "0.1.0",
-    "exports": "./index.ts",
+    "scripts": {
+        "publish:jsr": "pnpm dlx jsr publish"
+    },
     "devDependencies": {
         "@types/node": "20.12.12"
     }
