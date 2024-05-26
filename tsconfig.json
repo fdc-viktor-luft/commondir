@@ -2,6 +2,9 @@
     "compilerOptions": {
         "target": "es2022",
         "moduleResolution": "NodeNext",
-        "module": "NodeNext"
-    }
+        "module": "NodeNext",
+        "skipLibCheck": true,
+        "noEmit": true
+    },
+    "include": ["*.ts", "foo.d.ts"]
 }
