@@ -1,5 +1,8 @@
 # commondir
 
+[![JSR](https://jsr.io/badges/@backend/commondir)](https://jsr.io/@backend/commondir)
+[![JSR Score](https://jsr.io/badges/@backend/commondir/score)](https://jsr.io/@backend/commondir)
+
 > ⚠️ This is a replacement for [`commondir`](https://www.npmjs.com/package/commondir) with improved API, integrated types and less outdated.
 >
 > Caveat: It works only with paths working in the current OS. Previously, you could e.g. kind of mix Windows and Linux paths.
