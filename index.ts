@@ -1,19 +1,22 @@
-import path from "path";
+import path from "node:path";
 
 const commonDir = (absoluteFiles: string[]): string => {
-    const res = absoluteFiles.slice(1).reduce((ps, file) => {
-        const xs = file.split(/\/+|\\+/);
-        let i = 0;
-        const minLen = Math.min(ps.length, xs.length);
-        while (i < minLen) {
-            ps[i] === xs[i];
-            i++;
-        }
-        return ps.slice(0, i);
-    }, absoluteFiles[0].split(/\/+|\\+/));
+    if (!absoluteFiles.length) return path.sep;
     
-    // Windows correctly handles paths with forward-slashes
-    return res.length > 1 ? res.join('/') : '/'
+    const first = absoluteFiles[0].split(path.sep);
+    let max = first.length;
+    for (let i = 1; i < absoluteFiles.length; i++) {
+        const next = absoluteFiles[i].split(path.sep);
+        for (let j = 0; j < max; j++) {
+            if (first[j] !== next[j]) {
+                max = j;
+                break;
+            }
+        }
+        if (max < 2) break;
+    }
+
+    return max > 1 ? first.slice(0, max).join(path.sep) : path.sep
 }
 
 /**
@@ -25,4 +28,3 @@ export default ((files: string[], { cwd, relative }: { cwd?: string; relative?: 
     const common = commonDir(absolutePaths);
     return relative ? path.relative(usedCwd, common) : common;
 });
-
